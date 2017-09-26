@@ -6,15 +6,15 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:39 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/09/26 17:24:45 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/09/27 01:05:47 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <checker.h>
 
-void				do_ss(t_list *stack_a, t_list *stack_b)
+void				do_ss(t_list **stack_a, t_list **stack_b)
 {
-	(void)stack_a;
-	(void)stack_b;
-	ft_printf("{yellow}do_ss{eoc}\n");
+	//ft_printf("{yellow}do_ss{eoc}\n");
+	do_sa(stack_a, stack_b);
+	do_sb(stack_a, stack_b);
 }
