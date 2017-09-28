@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:39 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/09/27 01:01:46 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/09/27 10:29:12 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,21 @@
 
 void				do_ra(t_list **stack_a, t_list **stack_b)
 {
-	(void)stack_a;
+	t_list			*first;
+	t_list			*current;
+	t_list			*next;
+
 	(void)stack_b;
-	ft_printf("{yellow}do_ra{eoc}\n");
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
+		return ;
+	first = *stack_a;
+	next = first->next;
+	*stack_a = next;
+	(*stack_a)->prev = 0;
+	current = *stack_a;
+	while (current->next)
+		current = current->next;
+	current->next = first;
+	first->prev = current;
+	first->next = 0;
 }

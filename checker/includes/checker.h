@@ -6,22 +6,26 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:46 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/09/27 01:45:11 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/09/28 10:53:38 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
 
+# include <fcntl.h>
 # include <ft_printf.h>
 
-# define NBR_INSTRUCTIONS 12
+# define NBR_INSTRUCTIONS 13
+# define OPTIONS "v"
 
 typedef void 		(*t_cmd)(t_list**, t_list**); 
 
 typedef struct		s_options
 {
-	char			debug;
+	t_uchar			verbose;
+	t_uchar			log;
+	t_uchar			color;
 }					t_options;
 
 typedef struct		s_instruction
@@ -42,14 +46,21 @@ typedef struct		s_data
 	t_list			*stack_b;
 	t_options		options;
 	int				nbr_arg;
+	int				instruction_executed;
+	int				fd;
 }					t_data;
 
-void				print_prog_header(void);
+void				print_prog_header(t_uchar log, int fd);
+int					print_prompt(t_uchar log, int fd);
 void				print_stacks(t_list **stack_a, t_list **stack_b);
+void				print_help(t_list **stack_a, t_list **stack_b);
+//void				print_stacks_col(int fd, t_list **stack_a, t_list **stack_b);
 
+t_data				*stock_data(t_data *data);
 t_instruction		*get_tab_instruction(t_instruction *instruction);
 int					find_instruction(t_instruction *instruction, char *cmd);
 
+void				clear_alloc(t_data *data);
 void				del_number(void *list, size_t size);
 
 void				do_pa(t_list **stack_a, t_list **stack_b);

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 23:17:33 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/09/27 01:45:13 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/09/28 00:06:20 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ t_instruction		*get_tab_instruction(t_instruction *instruction)
 		{"rra", do_rra},
 		{"rrb", do_rrb},
 		{"rrr", do_rrr},
-		{"print", &print_stacks}
+		{"print", &print_stacks},
+		{"help", &print_help}
 	};
 
 	instruction = tab;
