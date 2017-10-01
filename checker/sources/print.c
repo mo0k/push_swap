@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 23:19:35 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/09/28 20:43:58 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/10/01 13:35:20 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void				print_elem(t_list *elem)
 {
 		printf("maillon de stack_a(%p):%d\tprev(%p)\tnext(%p)\n", elem, ((t_number*)(elem->content))->value, elem->prev, elem->next);
 }
-void				clear_alloc(t_data *data)
+void				clear(t_data *data)
 {
 	while (data->stack_a || data->stack_b)
 	{
@@ -31,6 +31,8 @@ void				clear_alloc(t_data *data)
 		if (data->stack_b)
 			ft_lstdelfirst(&data->stack_b, &del_number);
 	}
+	if (data->fd > 2 && close(data->fd) == -1)
+		ft_dprintf(2, "Error: close file\n");
 }
 
 void		print_help(t_list **stack_a, t_list **stack_b)
