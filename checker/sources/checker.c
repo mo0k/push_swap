@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:39 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/01 13:35:07 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/10/15 20:54:29 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,71 +20,6 @@ static int exit_error(t_data *data)
 	return (EXIT_FAILURE);
 }
 
-static int 		parse(t_options *options, char *arg, t_uchar *flag)
-{
-	if (!arg)
-		return (-1);
-	if (*arg == '-' && *flag == 1)
-	{
-		while (++arg && *arg)
-		{
-			if (*arg == 'v')
-				options->verbose = 1;
-			else if (*arg == 'f')
-				options->log = 1;
-			else if (*arg == 'c')
-				options->color = 1;
-			else if (*arg == 'r')
-				options->display_result = 1;
-			else
-				return (-1);
-		}
-		return (0);
-	}
-	else if (*arg == '-' && *flag == 0)
-		return (-1);
-	else
-	{
-		*flag = 0;
-		return (1);
-	}
-}
-static int		init(t_data *data, int ac, char **av)
-{
-	int				i;
-	t_number		number;
-	int 			ret;
-	t_uchar			option;
-
-	if (!data || !av || !*av)
-		return (0);
-	data->instruction = get_tab_instruction(data->instruction);
-	data->stack_a = NULL;
-	data->stack_b = NULL;
-	data->options.verbose = 0;
-	data->options.color = 0;
-	data->options.display_result = 0;
-	data->instruction_executed = 0;
-	data->fd = 1;
-	stock_data(data);
-	option = 1;
-	i = 0;
-	while (++i < ac)
-	{
-		if ((ret = parse(&data->options, av[i], &option)) == -1)
-			return (0);
-		else if (!ret)
-			continue;
-		number.value = ft_atoi(av[i]);
-		ft_lstadd_end(&data->stack_a, ft_lstnew(&number, sizeof(number)));
-	}
-	data->options.log = (data->options.log == 1 && !isatty(STDIN_FILENO) ? 1 : 0);
-	if (data->options.log && (data->fd = open("./log", O_WRONLY | O_TRUNC | O_CREAT, 0600)) == -1)
-		return (0);
-	data->nbr_arg = ft_lstlen(data->stack_a);
-
-	return (1);
-}
 int				check_result(t_list *stack, int nbr_arg)
 {
 	t_list			*next;
@@ -108,16 +43,7 @@ int				check_result(t_list *stack, int nbr_arg)
 	}
 	return ((i == nbr_arg) ? 1 : 0);
 }
-t_data			*stock_data(t_data *data)
-{
-	static t_data	*stock;
 
-	if (data)
-		stock = data;
-	else
-		return (stock);
-	return (data);
-}
 int 			run_checker(t_data *data, char **readline)
 {
 	int				index;

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:46 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/01 13:34:36 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/10/15 20:59:06 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int					print_prompt(t_uchar log, int fd);
 void				print_stacks(t_list **stack_a, t_list **stack_b);
 void				print_help(t_list **stack_a, t_list **stack_b);
 //void				print_stacks_col(int fd, t_list **stack_a, t_list **stack_b);
-
+int					init(t_data *data, int ac, char **av);
 t_data				*stock_data(t_data *data);
 t_instruction		*get_tab_instruction(t_instruction *instruction);
 int					find_instruction(t_instruction *instruction, char *cmd);

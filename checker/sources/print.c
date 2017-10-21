@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 23:19:35 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/01 13:35:20 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/10/01 14:20:55 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void		print_help(t_list **stack_a, t_list **stack_b)
 	(void)stack_b;
 	ft_printf("\n{lgreen}HELP{eoc}:\n\n" \
 		" {green}I{eoc} Options :\n\t-v : verbose\n" \
-		"\t-f : Copy output to file named \"log\" in curdir\n\n" \
+		"\t-f : Copy output to file named \"log\" in curdir\n" \
+		"\t-c : Color\n" \
+		"\t-r : Display stacks at the end of execution\n\n" \
 		" {green}II{eoc} Instruction:\n\tsa  => swap a\n"
 		"\tsb  => swap b\n"
 		"\tss  => swap a & swap b\n"
