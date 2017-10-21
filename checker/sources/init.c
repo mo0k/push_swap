@@ -6,13 +6,29 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 21:40:58 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/21 23:08:45 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/10/21 23:26:30 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <checker.h>
 
-static char **is_multi(char *value)
+static void 		init_data(t_data *data)
+{
+	if (!data)
+		return ;
+	data->instruction = get_tab_instruction(data->instruction);
+	data->stack_a = NULL;
+	data->stack_b = NULL;
+	data->options.verbose = 0;
+	data->options.log = 0;
+	data->options.color = 0;
+	data->options.display_result = 0;
+	data->instruction_executed = 0;
+	data->fd = 1;
+	stock_data(data);
+}
+
+static char			**is_multi(char *value)
 {
 	char separator[5];
 	char **split;
@@ -37,70 +53,6 @@ static char **is_multi(char *value)
 	return (split);
 }
 
-static int 		parse(t_options *options, char *arg, t_uchar *flag)
-{
-	if (*arg == '-' && ft_isalpha(*(arg + 1)) && *flag == 1)
-	{
-		while (++arg && *arg)
-		{
-			if (*arg == 'v')
-				options->verbose = 1;
-			else if (*arg == 'f')
-				options->log = 1;
-			else if (*arg == 'c')
-				options->color = 1;
-			else if (*arg == 'r')
-				options->display_result = 1;
-			else
-				return (-1);
-		}
-		return (0);
-	}
-	else
-	{
-		*flag = 0;
-		if (*arg == '-')
-			++arg;
-		while (*arg)
-		{
-			if (!ft_isdigit(*arg))
-				return (-1);
-			++arg;
-		}
-		return (1);
-	}
-}
-
-static void 		init_data(t_data *data)
-{
-	if (!data)
-		return ;
-	data->instruction = get_tab_instruction(data->instruction);
-	data->stack_a = NULL;
-	data->stack_b = NULL;
-	data->options.verbose = 0;
-	data->options.color = 0;
-	data->options.display_result = 0;
-	data->instruction_executed = 0;
-	data->fd = 1;
-	stock_data(data);
-}
-
-int 				parse_number(t_data *d, char *str_number, t_uchar *option)
-{
-	int 			ret;
-	t_number		number;
-
-	if (!d || !str_number || !option)
-		return (-1);
-	if ((ret = parse(&d->options, str_number, option)) == -1)
-		return (-1);//return (0);
-	else if (!ret)
-		return (0); //continue;
-	number.value = ft_atoi(str_number);
-	ft_lstadd_end(&d->stack_a, ft_lstnew(&number, sizeof(number)));
-	return (1);
-}
 
 static int 			tab2len(char **tab)
 {
@@ -116,6 +68,7 @@ static int 			tab2len(char **tab)
 	}
 	return (i);
 }
+
 static int 			input(t_data *data, t_uchar *option, int ac, char **av)
 {
 	int				i;
@@ -133,7 +86,7 @@ static int 			input(t_data *data, t_uchar *option, int ac, char **av)
 			i++;
 			continue;
 		}
-		if((result = parse_number(data, av[i], option)) == -1)
+		if((result = parse(data, av[i], option)) == -1)
 			return (0);
 		else if (!result)
 		{

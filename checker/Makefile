@@ -6,7 +6,7 @@
 #    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/07 17:53:51 by mo0ky             #+#    #+#              #
-#    Updated: 2017/10/15 20:59:20 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/10/21 23:27:33 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC_PATH = sources
 
 SRC =	$(SRC_PATH)/checker.c		\
 		$(SRC_PATH)/init.c			\
+		$(SRC_PATH)/parse.c			\
 		$(SRC_PATH)/data.c			\
 		$(SRC_PATH)/print.c			\
 		$(SRC_PATH)/instruction.c	\
