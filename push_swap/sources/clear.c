@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pb.c                                               :+:      :+:    :+:   */
+/*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 00:10:39 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/24 21:56:49 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/10/23 20:47:39 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/10/23 23:13:30 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <checker.h>
+#include <push_swap.h>
 
-void				do_pb(t_list **stack_a, t_list **stack_b)
+void				del_number(void *content, size_t size)
 {
-	t_list *temp_a;
-	t_list *temp_b;
+	(void)size;
+	free(content);
+	content = NULL;
+}
 
-	if (!stack_b || !stack_a || !*stack_a)
-		return ;
-	temp_b = *stack_b;
-	temp_a = (*stack_a)->next;
-	*stack_b = *stack_a;
-	if (*stack_b)
-		(*stack_b)->next = temp_b;
-	if (temp_b)
-		temp_b->prev = *stack_b;
-	*stack_a = temp_a;
-	if (*stack_a)
-		(*stack_a)->prev = NULL;
+void				clear(t_data *data)
+{
+	while (data->stack_a.list || data->stack_b.list)
+	{
+		if (data->stack_a.list)
+			ft_lstdelfirst(&data->stack_a.list, &del_number);
+		if (data->stack_b.list)
+			ft_lstdelfirst(&data->stack_b.list, &del_number);
+	}
 }

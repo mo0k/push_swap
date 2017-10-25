@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pb.c                                               :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 00:10:39 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/24 21:56:49 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/10/25 01:07:50 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/10/25 01:09:22 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <checker.h>
+#include <push_swap.h>
 
-void				do_pb(t_list **stack_a, t_list **stack_b)
+
+int 				swap(t_stack *stack, t_cmd func)
 {
-	t_list *temp_a;
-	t_list *temp_b;
+	t_list *temp;
 
-	if (!stack_b || !stack_a || !*stack_a)
-		return ;
-	temp_b = *stack_b;
-	temp_a = (*stack_a)->next;
-	*stack_b = *stack_a;
-	if (*stack_b)
-		(*stack_b)->next = temp_b;
-	if (temp_b)
-		temp_b->prev = *stack_b;
-	*stack_a = temp_a;
-	if (*stack_a)
-		(*stack_a)->prev = NULL;
+	if (!stack || !func)
+		return (0);
+	temp = stack->control.first;
+	stack->control.first = stack->control.second;
+	stack->control.second = temp;
+	func(&stack->list, &stack->list);
+	return (1);
 }

@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pb.c                                               :+:      :+:    :+:   */
+/*   rb.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:39 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/24 21:56:49 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/10/23 21:10:13 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <checker.h>
+#include <push_swap.h>
 
-void				do_pb(t_list **stack_a, t_list **stack_b)
+void				do_rb(t_list **stack_a, t_list **stack_b)
 {
-	t_list *temp_a;
-	t_list *temp_b;
+	t_list			*first;
+	t_list			*current;
+	t_list			*next;
 
-	if (!stack_b || !stack_a || !*stack_a)
+	(void)stack_a;
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
-	temp_b = *stack_b;
-	temp_a = (*stack_a)->next;
-	*stack_b = *stack_a;
-	if (*stack_b)
-		(*stack_b)->next = temp_b;
-	if (temp_b)
-		temp_b->prev = *stack_b;
-	*stack_a = temp_a;
-	if (*stack_a)
-		(*stack_a)->prev = NULL;
+	first = *stack_b;
+	next = first->next;
+	*stack_b = next;
+	(*stack_b)->prev = 0;
+	current = *stack_b;
+	while (current->next)
+		current = current->next;
+	current->next = first;
+	first->prev = current;
+	first->next = 0;
 }
+
