@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 20:47:39 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/23 23:13:30 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/12 21:57:51 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,19 @@ void				del_number(void *content, size_t size)
 
 void				clear(t_data *data)
 {
+	ft_printf("{red}START clear memomy alloc{eoc}\n");
 	while (data->stack_a.list || data->stack_b.list)
 	{
+		ft_printf("{lred}a->list(%p)\tb->list(%p){eoc}\n", data->stack_a.list, data->stack_b.list);
 		if (data->stack_a.list)
+		{
+			ft_printf("{lred}GO DEL a->list(%p){eoc}\n", data->stack_a.list);
 			ft_lstdelfirst(&data->stack_a.list, &del_number);
+		}
 		if (data->stack_b.list)
+		{
+			ft_printf("{lred}GO DEL b->list(%p){eoc}\n", data->stack_b.list);
 			ft_lstdelfirst(&data->stack_b.list, &del_number);
+		}
 	}
 }

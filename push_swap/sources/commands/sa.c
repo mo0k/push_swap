@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:39 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/23 21:11:55 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/12 11:55:15 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void				do_sa(t_list **stack_a, t_list **stack_b)
 {
-	//ft_printf("{yellow}do_sa{eoc}\n");
 	(void)stack_b;
 	t_list	*tmp;
 
@@ -26,4 +25,6 @@ void				do_sa(t_list **stack_a, t_list **stack_b)
 	tmp->prev = *stack_a;
 	tmp->next = (*stack_a)->next;
 	(*stack_a)->next = tmp;
+	if ((*stack_a)->next && (*stack_a)->next->next)
+		(*stack_a)->next->next->prev = (*stack_a)->next;
 }

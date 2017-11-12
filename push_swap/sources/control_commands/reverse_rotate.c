@@ -6,24 +6,33 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 23:33:00 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/25 23:35:30 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/12 12:16:40 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-int 				reverse_rotate(t_stack *stack, t_cmd func)
+int 			double_reverse_rotate(t_stack *a, t_stack *b)
+{
+	if (!a || !b)
+		return (0);
+	reverse_rotate(&a->control, &a->list, &do_rra);
+	reverse_rotate(&b->control, &b->list, &do_rrb);
+	return (1);
+}
+
+int				reverse_rotate(t_control *control, t_list **alist, t_cmd func)
 {
 	t_list	*temp;
 
-	if (!stack || !func)
+	if (!control || !alist || !func)
 		return (0);
-	if (!stack->control.first || !stack->control.last)
+	if (!control->first || !control->last)
 		return (0);
-	temp = stack->control.last;
-	stack->control.last =	stack->control.last ? stack->control.last->prev : 0;
-	stack->control.second = stack->control.first;
-	stack->control.first =	temp;
-	func(&stack->list, &stack->list);
+	temp = control->last;
+	control->last =	control->last ? control->last->prev : 0;
+	control->second = control->first;
+	control->first = temp;
+	func(alist, alist);
 	return (1);
 }
