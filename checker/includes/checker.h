@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:46 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/21 23:27:24 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/13 15:01:01 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CHECKER_H
 
 # include <fcntl.h>
+# include <curses.h>
 # include <ft_printf.h>
 
 # define NBR_INSTRUCTIONS 13
@@ -62,7 +63,7 @@ t_data				*stock_data(t_data *data);
 t_instruction		*get_tab_instruction(t_instruction *instruction);
 int					find_instruction(t_instruction *instruction, char *cmd);
 
-void				clear(t_data *data);
+void				clear_data(t_data *data);
 void				del_number(void *list, size_t size);
 
 void				do_pa(t_list **stack_a, t_list **stack_b);
