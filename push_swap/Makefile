@@ -6,7 +6,7 @@
 #    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/07 17:53:51 by mo0ky             #+#    #+#              #
-#    Updated: 2017/11/12 21:51:28 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/11/13 15:39:48 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC =	$(SRC_PATH)/push_swap.c							\
 		$(SRC_PATH)/initialize/parse.c					\
 		$(SRC_PATH)/temp_print.c						\
 		$(SRC_PATH)/utils.c								\
+		$(SRC_PATH)/spe_atoi.c							\
 		$(SRC_PATH)/clear.c								\
 		$(SRC_PATH)/control_commands/push.c				\
 		$(SRC_PATH)/control_commands/swap.c				\

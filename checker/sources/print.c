@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 23:19:35 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/01 14:20:55 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/13 15:12:44 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void				print_elem(t_list *elem)
 {
 		printf("maillon de stack_a(%p):%d\tprev(%p)\tnext(%p)\n", elem, ((t_number*)(elem->content))->value, elem->prev, elem->next);
 }
-void				clear(t_data *data)
+void				clear_data(t_data *data)
 {
 	while (data->stack_a || data->stack_b)
 	{
@@ -70,9 +70,9 @@ void		print_prog_header(t_uchar color, int fd)
 	else
 	{
 		ft_dprintf(fd, " _______________________________________________________\n");
-		ft_dprintf(fd, "|							|\n");
-		ft_dprintf(fd, "|		PUSH_SWAP ------ CHECKER		|\n");
-		ft_dprintf(fd, "|							|\n");
+		ft_dprintf(fd, "|									|\n");
+		ft_dprintf(fd, "|		PUSH_SWAP ------ CHECKER			|\n");
+		ft_dprintf(fd, "|									|\n");
 		ft_dprintf(fd, "|_______________________________________________________|\n\n");
 	}
 }
@@ -91,12 +91,12 @@ static void	print_stacks_header(t_uchar color, int fd)
 {
 	if (color)
 		ft_dprintf(fd, "\t{cyan} ______________ \t ______________\n"		\
-				"\t|      a       |\t|      b       |\n"		\
+				"\t|    PILE A    |\t|    PILE B    |\n"		\
 				"\t|______________|\t|______________|{eoc}\n"	\
 				"\t|              |\t|              |\n");
 	else
 		ft_dprintf(fd, "\t ______________ \t ______________\n"		\
-				"\t|      a       |\t|      b       |\n"		\
+				"\t|    PILE A    |\t|    PILE B    |\n"		\
 				"\t|______________|\t|______________|\n"	\
 				"\t|              |\t|              |\n");
 }
@@ -125,11 +125,11 @@ void		print_stacks(t_list **stack_a, t_list **stack_b)
 		a = (ptr_stack_a) ? (t_number*)(ptr_stack_a->content) : 0;
 		b = (ptr_stack_b) ? (t_number*)(ptr_stack_b->content) : 0;
 		if (!a)
-			ft_dprintf(fd, "\t|      %-8c|\t|      %-8d|\n", ' ', b->value);
+			ft_dprintf(fd, "\t|%12c  |\t|%12d  |\n", ' ', b->value);
 		else if (!b)
-			ft_dprintf(fd, "\t|      %-8d|\t|      %-8c|\n", a->value, ' ');
+			ft_dprintf(fd, "\t|%12d  |\t|%12c  |\n", a->value, ' ');
 		else
-			ft_dprintf(fd, "\t|      %-8d|\t|      %-8d|\n", a->value, b->value);
+			ft_dprintf(fd, "\t|%12d  |\t|%12d  |\n", a->value, b->value);
 		ptr_stack_a = (ptr_stack_a) ? ptr_stack_a->next : 0;
 		ptr_stack_b = (ptr_stack_b) ? ptr_stack_b->next : 0;
 		if (!ptr_stack_a && !ptr_stack_b)

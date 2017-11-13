@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:35:17 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/12 21:13:19 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/13 15:43:28 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,15 @@ int 				parse(t_data *d, char *str_number)
 		return (-1);
 	if ((ret = do_parsing(str_number)) == -1)
 		return (-1);
-	else if (!ret)
-		return (0);
-	number.value = ft_atoi(str_number);
+	//else if (!ret)
+	//	return (0);
+	if (ft_strlen(str_number) > 12)
+		return (-1);
+
+	long long nbr = spe_atoi(str_number);
+	if (nbr < -2147483648 || nbr > 2147483647)
+		return (-1);
+	number.value = (int)nbr;
 	number.index = -1;
 	ft_lstadd_end(&d->stack_a.list, (new = ft_lstnew(&number, sizeof(number))));
 	//ft_printf("new number(%p)->content(%p):{red}%d{eoc}\n", new, new->content, number.value);

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:46 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/12 14:14:15 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/13 15:40:07 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ t_ctrl_cmd			get_rotate_ctrl_cmd(int *index, int argc);
 t_cmd				get_rotate_cmd(t_ctrl_cmd ctrl_cmd, char *stackname);
 t_list 				*get_min(t_list *list);
 t_list 				*get_max(t_list *list);
+
+long				spe_atoi(const char *str);
 
 /*
 **	t_ctrl_cmd
