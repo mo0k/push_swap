@@ -6,7 +6,7 @@
 #    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/07 17:53:51 by mo0ky             #+#    #+#              #
-#    Updated: 2017/11/13 23:56:42 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/11/15 00:55:47 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC =	$(SRC_PATH)/push_swap.c							\
 		$(SRC_PATH)/control_commands/reverse_rotate.c	\
 		$(SRC_PATH)/resolve/check_result.c				\
 		$(SRC_PATH)/resolve/resolve.c					\
+		$(SRC_PATH)/resolve/resolve_utils.c				\
 		$(SRC_PATH)/resolve/sort.c						\
 		$(SRC_PATH)/resolve/command.c					\
 		../spe_atoi.c									\
