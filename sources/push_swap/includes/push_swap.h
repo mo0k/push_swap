@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:46 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/13 23:55:45 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/15 00:56:00 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,16 @@ t_data				*stock_data(t_data *data);
 **	resolve
 */
 int					check_result(t_list *stack, int nbr_arg);
-int 				resolve(t_data *data);
+int 				resolve_shortlist(t_data *data);
+void 				sort_a_firsttime(t_stack *a, t_stack *b, t_list **acmds);
+void 				sort_b(t_stack *b, t_list **acmds);
+int 				resolve_longlist(t_data *data);
+t_list 				*update_all_index_a(t_stack *a, t_stack *b);
+t_list 				*update_all_index_b(t_stack *a, t_stack *b);
+void				sort_controler(t_stack *a, t_stack *b, t_list **acmds);
+void 				prepare_stack(t_stack *stack, int decale, t_list **acmds);
+int					find_index(t_list *list, t_list *search);
+
 
 void				add_command(t_list **cmds, char *command_name);
 void				print_command(t_list *elem);
