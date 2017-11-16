@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 23:19:35 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/14 00:01:39 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/15 12:45:22 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,17 @@ void		print_prog_header(t_uchar color, int fd)
 	if (color)
 	{
 		ft_dprintf(fd, "{lblue} _______________________________________________________\n");
-		ft_dprintf(fd, "|									|\n");
-		ft_dprintf(fd, "|		{eoc}{white}PUSH_SWAP ------ CHECKER{eoc}{lblue}			|\n");
-		ft_dprintf(fd, "|									|\n");
+		ft_dprintf(fd, "|							|\n");
+		ft_dprintf(fd, "|		{eoc}{white}PUSH_SWAP ------ CHECKER{eoc}{lblue}		|\n");
+		ft_dprintf(fd, "|							|\n");
 		ft_dprintf(fd, "|_______________________________________________________|{eoc}\n\n");
 	}
 	else
 	{
 		ft_dprintf(fd, " _______________________________________________________\n");
-		ft_dprintf(fd, "|									|\n");
-		ft_dprintf(fd, "|		PUSH_SWAP ------ CHECKER			|\n");
-		ft_dprintf(fd, "|									|\n");
+		ft_dprintf(fd, "|							|\n");
+		ft_dprintf(fd, "|		PUSH_SWAP ------ CHECKER		|\n");
+		ft_dprintf(fd, "|							|\n");
 		ft_dprintf(fd, "|_______________________________________________________|\n\n");
 	}
 }

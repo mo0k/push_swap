@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 21:40:58 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/21 23:26:30 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/15 12:44:15 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static char			**is_multi(char *value)
 	}
 	return (split);
 }
-
 
 static int 			tab2len(char **tab)
 {
