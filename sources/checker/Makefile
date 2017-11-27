@@ -6,7 +6,7 @@
 #    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/07 17:53:51 by mo0ky             #+#    #+#              #
-#    Updated: 2017/11/13 23:56:06 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/11/27 22:50:11 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,11 @@ CFLAGS = -Wall -Wextra -Werror -g3
 
 INC_PATH = includes
 
-INC =	$(INC_PATH)/checker.h ../../includes/instructions.h
+INC =	$(INC_PATH)/checker.h \
+		$(INC_PATH)/win.h \
+		$(INC_PATH)/visual.h \
+		../../includes/instructions.h \
+		../../includes/my_types.h
 
 SRC_PATH = sources
 
@@ -28,8 +32,13 @@ SRC =	$(SRC_PATH)/checker.c		\
 		$(SRC_PATH)/data.c			\
 		$(SRC_PATH)/print.c			\
 		$(SRC_PATH)/instruction.c	\
-		../spe_atoi.c				\
-		../already_create.c			\
+		$(SRC_PATH)/visu.c		\
+		$(SRC_PATH)/column.c		\
+		$(SRC_PATH)/win.c		\
+		$(SRC_PATH)/update.c		\
+		../spe_atoi.c			\
+		../already_create.c		\
+		../get_min_max.c		\
 		../instructions/pa.c	\
 		../instructions/pb.c	\
 		../instructions/ra.c	\

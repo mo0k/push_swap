@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:46 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/15 00:56:00 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/27 22:57:03 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <fcntl.h>
 # include <ft_printf.h>
+# include <my_types.h>
 # include <instructions.h>
 
 typedef int 		(*t_condition)(int, t_list*, t_list*);
@@ -35,12 +36,6 @@ typedef struct 		s_control
 
 typedef void 		(*t_cmd)(t_list**, t_list**);
 typedef int 		(*t_ctrl_cmd)(t_control *control, t_list **alist, t_cmd func);
-
-typedef struct		s_number
-{
-	int				value;
-	//int				index;
-}					t_number;
 
 typedef struct		s_action
 {
@@ -65,7 +60,6 @@ typedef struct		s_data
 	t_stack			stack_b;
 	int				argc;
 	int				fd;
-	t_list			*cmds;
 }					t_data;
 
 /*
@@ -89,18 +83,14 @@ t_data				*stock_data(t_data *data);
 */
 int					check_result(t_list *stack, int nbr_arg);
 int 				resolve_shortlist(t_data *data);
-void 				sort_a_firsttime(t_stack *a, t_stack *b, t_list **acmds);
-void 				sort_b(t_stack *b, t_list **acmds);
+void 				sort_a_firsttime(t_stack *a, t_stack *b);
+void 				sort_b(t_stack *b);
 int 				resolve_longlist(t_data *data);
 t_list 				*update_all_index_a(t_stack *a, t_stack *b);
 t_list 				*update_all_index_b(t_stack *a, t_stack *b);
-void				sort_controler(t_stack *a, t_stack *b, t_list **acmds);
-void 				prepare_stack(t_stack *stack, int decale, t_list **acmds);
+void				sort_controler(t_stack *a, t_stack *b);
+void 				prepare_stack(t_stack *stack, int decale);
 int					find_index(t_list *list, t_list *search);
-
-
-void				add_command(t_list **cmds, char *command_name);
-void				print_command(t_list *elem);
 
 /*
 **	delete memory alloc

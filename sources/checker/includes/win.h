@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.c                                             :+:      :+:    :+:   */
+/*   win.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/12 11:45:28 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/26 23:45:50 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/09/26 00:10:46 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/11/27 22:45:29 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#ifndef WIN_H
+# define WIN_H
 
-void 		init_data(t_data *data)
-{
-	if (!data)
-		return ;
-	init_stack(&data->stack_a, "stack_a");
-	init_stack(&data->stack_b, "stack_b");
-	data->argc = 0;
-	data->fd = 1;
-	stock_data(data);
-}
+# include <win.h>
+# include <curses.h>
+# include <libft.h>
 
-t_data			*stock_data(t_data *data)
-{
-	static t_data	*stock;
+typedef struct	s_win{
+	WINDOW		*window;
+	int			height;
+	int			width;
+}				t_win;
 
-	if (data)
-		stock = data;
-	else
-		return (stock);
-	return (data);
-}
+int 		initialize_window(t_win *win, int height, int width);
+int			create_window(t_win *win, int x_start, int y_start, short color_pair);
+void		add_title(t_win *win, char *title, short color_pair);
+
+#endif

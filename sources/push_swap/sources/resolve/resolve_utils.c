@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 12:18:06 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/15 00:55:34 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/26 23:43:39 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ t_list 			*update_all_index_b(t_stack *a, t_stack *b)
 	return (ret);
 }
 
-void				sort_controler(t_stack *a, t_stack *b, t_list **acmds)
+void				sort_controler(t_stack *a, t_stack *b)
 {
 	//ft_printf("start sort_controler\n");
 	//sleep(5);
@@ -239,7 +239,9 @@ void				sort_controler(t_stack *a, t_stack *b, t_list **acmds)
 				double_rotate(a, b);
 			else
 				double_reverse_rotate(a, b);
-			add_command(acmds, cmd_name);
+			write(1, cmd_name, ft_strlen(cmd_name));
+			write(1, "\n", 1);
+			//add_command(acmds, cmd_name);
 			--a->action.value;
 			--b->action.value;
 		}
@@ -248,7 +250,9 @@ void				sort_controler(t_stack *a, t_stack *b, t_list **acmds)
 			//ft_printf("action {cyan}rotate a{eoc}\n");
 			ft_strcpy(cmd_name, (a->action.cmd == &do_ra ? "ra" : "rra"));
 			a->action.ctrl_cmd(&a->control, &a->list, a->action.cmd);
-			add_command(acmds, cmd_name);
+			//add_command(acmds, cmd_name);
+			write(1, cmd_name, ft_strlen(cmd_name));
+			write(1, "\n", 1);
 			--a->action.value;
 		}
 		else if (b && b->action.value > 0)
@@ -256,7 +260,9 @@ void				sort_controler(t_stack *a, t_stack *b, t_list **acmds)
 			//ft_printf("action {cyan}rotate b{eoc}\n");
 			ft_strcpy(cmd_name, (b->action.cmd == &do_rb ? "rb" : "rrb"));
 			b->action.ctrl_cmd(&b->control, &b->list, b->action.cmd);
-			add_command(acmds, cmd_name);
+			//add_command(acmds, cmd_name);
+			write(1, cmd_name, ft_strlen(cmd_name));
+			write(1, "\n", 1);
 			--b->action.value;
 		}
 	}
@@ -279,11 +285,11 @@ int					find_index(t_list *list, t_list *search)
 	return (-1);
 }
 
-void 					prepare_stack(t_stack *stack, int decale, t_list **acmds)
+void 					prepare_stack(t_stack *stack, int decale)
 {
 	char		cmd_name[4];
 
-	if (!stack || !acmds)
+	if (!stack)
 		return ;
 	if (!ft_strcmp(stack->name, "stack_a"))
 		ft_strcpy(cmd_name, (stack->action.ctrl_cmd == rotate ? "ra" : "rra"));
@@ -295,7 +301,9 @@ void 					prepare_stack(t_stack *stack, int decale, t_list **acmds)
 		stack->action.ctrl_cmd(&stack->control, &stack->list ,stack->action.cmd);
 		//ft_lstiter(stack->list, &print_elem);
 		
-		add_command(acmds, cmd_name);
+		//add_command(acmds, cmd_name);
+		write(1, cmd_name, ft_strlen(cmd_name));
+		write(1, "\n", 1);
 	}
 }
 

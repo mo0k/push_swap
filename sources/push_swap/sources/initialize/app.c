@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 21:40:58 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/13 20:06:34 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/24 23:08:07 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int 			input(t_data *data, int ac, char **av)
 		if ((split = is_multi(av[i])) != NULL)
 		{
 			input(data, tab2len(split), split);
-			ft_delstrtab(split);
+			ft_delete_double_tab(split);
 			i++;
 			continue;
 		}

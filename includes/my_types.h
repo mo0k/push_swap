@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command.c                                          :+:      :+:    :+:   */
+/*   my_types.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/26 14:21:01 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/10/26 21:36:39 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/11/27 22:48:35 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/11/27 22:52:00 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#ifndef MY_TYPES_H
+# define MY_TYPES_H
 
-void			add_command(t_list **cmds, char *command_name)
+typedef struct		s_number
 {
-	t_command	command;
+	int				value;
+}					t_number;
 
-	if (!cmds || !command_name)
-		return ;
-	command.name = ft_strdup(command_name);
-	ft_lstadd_end(cmds, ft_lstnew(&command, sizeof(command)));
-}
-
-void			print_command(t_list *elem)
-{
-
-	if (!elem)
-		return ;
-	ft_dprintf(1, "%s\n", ((t_command*)(elem->content))->name);
-}
+#endif

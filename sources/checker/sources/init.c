@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 21:40:58 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/15 12:44:15 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/24 23:28:06 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ static void 		init_data(t_data *data)
 	data->instruction = get_tab_instruction(data->instruction);
 	data->stack_a = NULL;
 	data->stack_b = NULL;
+	data->stack_b = NULL;
 	data->options.verbose = 0;
 	data->options.log = 0;
 	data->options.color = 0;
 	data->options.display_result = 0;
+	data->options.ncurse = 0;
 	data->instruction_executed = 0;
 	data->fd = 1;
 	stock_data(data);
@@ -81,7 +83,7 @@ static int 			input(t_data *data, t_uchar *option, int ac, char **av)
 		if ((split = is_multi(av[i])) != NULL)
 		{
 			input(data, option, tab2len(split), split);
-			ft_delstrtab(split);
+			ft_delete_double_tab(split);
 			i++;
 			continue;
 		}

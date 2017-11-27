@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 23:19:35 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/15 12:45:22 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/27 21:54:45 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,6 @@ void				del_number(void *content, size_t size)
 void				print_elem(t_list *elem)
 {
 		printf("maillon de stack_a(%p):%d\tprev(%p)\tnext(%p)\n", elem, ((t_number*)(elem->content))->value, elem->prev, elem->next);
-}
-void				clear_data(t_data *data)
-{
-	while (data->stack_a || data->stack_b)
-	{
-		if (data->stack_a)
-			ft_lstdelfirst(&data->stack_a, &del_number);
-		if (data->stack_b)
-			ft_lstdelfirst(&data->stack_b, &del_number);
-	}
-	if (data->fd > 2 && close(data->fd) == -1)
-		ft_dprintf(2, "Error: close file\n");
 }
 
 void		print_help(t_list **stack_a, t_list **stack_b)
@@ -75,16 +63,6 @@ void		print_prog_header(t_uchar color, int fd)
 		ft_dprintf(fd, "|							|\n");
 		ft_dprintf(fd, "|_______________________________________________________|\n\n");
 	}
-}
-
-int		print_prompt(t_uchar color, int fd)
-{
-	static char prompt[] = " __________________________________________________"
-							"_____\n Instruction: ";
-
-	(void)color;
-	ft_dprintf(fd, "%s", prompt);
-	return (1);
 }
 
 static void	print_stacks_header(t_uchar color, int fd)

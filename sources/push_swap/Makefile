@@ -6,7 +6,7 @@
 #    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/07 17:53:51 by mo0ky             #+#    #+#              #
-#    Updated: 2017/11/15 12:43:01 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/11/27 22:56:08 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ CFLAGS = -Wall -Wextra -Werror
 
 INC_PATH = includes
 
-INC =	push_swap.h ../../includes/instructions.h
+INC =	push_swap.h \
+		../../includes/instructions.h \
+		../../includes/my_types.h
 
 SRC_PATH = sources
 
@@ -38,9 +40,9 @@ SRC =	$(SRC_PATH)/push_swap.c							\
 		$(SRC_PATH)/resolve/resolve.c					\
 		$(SRC_PATH)/resolve/resolve_utils.c				\
 		$(SRC_PATH)/resolve/sort.c						\
-		$(SRC_PATH)/resolve/command.c					\
 		../spe_atoi.c									\
 		../already_create.c								\
+		../get_min_max.c								\
 		../instructions/pa.c							\
 		../instructions/pb.c							\
 		../instructions/ra.c							\

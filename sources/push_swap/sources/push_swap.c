@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:39 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/15 00:58:04 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/26 23:57:04 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				main(int ac, char **av)
 		(data.stack_a.argc < 8) ? resolve_shortlist(&data) :
 									resolve_longlist(&data);
 
-	ft_lstiter(data.cmds, print_command);
+	//ft_lstiter(data.cmds, print_command);
 	clear(&data);
 	return (0);
 }

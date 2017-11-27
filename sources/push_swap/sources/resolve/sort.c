@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 14:19:55 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/15 00:51:06 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/26 23:42:59 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	is_desc(int value, t_list *limit_1, t_list *limit_2)
 	return ((value <= number_1->value && value > number_2->value) ? 1 : 0);
 }
 
-void 			sort_a_firsttime(t_stack *a, t_stack *b, t_list **acmds)
+void 			sort_a_firsttime(t_stack *a, t_stack *b)
 {
 	//print_control(a->control);
 	t_number *first;
@@ -56,28 +56,33 @@ void 			sort_a_firsttime(t_stack *a, t_stack *b, t_list **acmds)
 	if (last && first && first->value > last->value)
 	{
 		rotate(&a->control, &a->list, do_ra);
-		add_command(acmds, "ra");
+		//add_command(acmds, "ra");
+		write(1, "ra\n", 3);
 	}
 	else if (last && second && second->value > last->value)
 	{
 		swap(&a->control, &a->list, do_sa);
-		add_command(acmds, "sa");
+		write(1, "sa\n", 3);
+		//add_command(acmds, "sa");
 		rotate(&a->control, &a->list, do_ra);
-		add_command(acmds, "ra");
+		//add_command(acmds, "ra");
+		write(1, "ra\n", 3);
 	}
 	else if (first && second && first->value < second->value)
 	{
 		push_b(a, b);
-		add_command(acmds, "pb");
+		//add_command(acmds, "pb");
+		write(1, "pb\n", 3);
 	}
 	else if (first && second && first->value > second->value)
 	{
 		swap(&a->control, &a->list, do_sa);
-		add_command(acmds, "sa");
+		//add_command(acmds, "sa");
+		write(1, "sa\n", 3);
 	}
 }
 
-void 			sort_b(t_stack *b, t_list **acmds)
+void 			sort_b(t_stack *b)
 {
 	t_number *first;
 	t_number *second;
@@ -89,18 +94,22 @@ void 			sort_b(t_stack *b, t_list **acmds)
 	if (last && first && first->value < last->value)
 	{
 		rotate(&b->control, &b->list, do_rb);
-		add_command(acmds, "rb");
+		write(1, "rb\n", 3);
+		//add_command(acmds, "rb");
 	}
 	else if (last && second && second->value < last->value)
 	{
 		swap(&b->control, &b->list, do_sb);
-		add_command(acmds, "sb");
+		//add_command(acmds, "sb");
+		write(1, "sb\n", 3);
 		rotate(&b->control, &b->list, do_rb);
-		add_command(acmds, "rb");
+		//add_command(acmds, "rb");
+		write(1, "rb\n", 3);
 	}
 	else if (first && second && first->value < second->value)
 	{
 		swap(&b->control, &b->list, do_sb);
-		add_command(acmds, "sb");
+		//add_command(acmds, "sb");
+		write(1, "sb\n", 3);
 	}
 }

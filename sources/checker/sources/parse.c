@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:35:17 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/13 23:59:53 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/11/24 23:09:34 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ static int 		do_parsing(t_options *options, char *arg, t_uchar *flag)
 		{
 			if (*arg == 'v')
 				options->verbose = 1;
+			else if (*arg == 'n')
+			{
+				options->ncurse = 1;
+			}
 			else if (*arg == 'f')
 				options->log = 1;
 			else if (*arg == 'c')
@@ -52,7 +56,9 @@ int 				parse(t_data *d, char *str_number, t_uchar *option)
 	t_number		number;
 
 	if (!d || !str_number || !option)
+	{
 		return (-1);
+	}
 	if ((ret = do_parsing(&d->options, str_number, option)) == -1)
 		return (-1);
 	else if (!ret)
