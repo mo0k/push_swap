@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 23:19:35 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/27 21:54:45 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/12/05 13:52:52 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void		print_help(t_list **stack_a, t_list **stack_b)
 		" {green}I{eoc} Options :\n\t-v : verbose\n" \
 		"\t-f : Copy output to file named \"log\" in curdir\n" \
 		"\t-c : Color\n" \
-		"\t-r : Display stacks at the end of execution\n\n" \
+		"\t-r : Display stacks at the end of execution\n" \
+		"\t-n : Using ncurses\n\n" \
 		" {green}II{eoc} Instruction:\n\tsa  => swap a\n"
 		"\tsb  => swap b\n"
 		"\tss  => swap a & swap b\n"

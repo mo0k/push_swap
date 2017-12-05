@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 22:20:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/12/05 13:06:26 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/12/05 13:27:17 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void		update_visual(t_display *display, t_list *stack_a, t_list *stack_b)
 		height = (height == 0) ? 1 : height;
 		update_column(&display->main_bottom, x++, 1, height);
 		stack_b = stack_b->next;
+		wrefresh(display->main_bottom.window);
 	}
 	clear_window(&display->main_bottom, x, display->main_bottom.height - 2);
 }

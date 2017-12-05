@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:39 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/12/05 13:03:12 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/12/05 13:48:15 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int				main(int ac, char **av)
 		return (exit_error(&data));
 	if (data.options.ncurse && !init_visual(&data.display, data.stack_a))
 		return (exit_error(&data));
-	if (isatty(STDIN_FILENO) || data.options.verbose)
+	if ((isatty(STDIN_FILENO) && !data.options.ncurse) || data.options.verbose)
 		print_prog_header(data.options.color, data.fd);
 	if (!run_checker(&data, &readline))
 		return (exit_prog(&data, EXIT_FAILURE));

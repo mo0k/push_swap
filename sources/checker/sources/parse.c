@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:35:17 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/12/03 21:43:14 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/12/05 13:51:31 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ static int 		do_parsing(t_options *options, char *arg, t_uchar *flag)
 			if (*arg == 'v')
 				options->verbose = 1;
 			else if (*arg == 'n')
-			{
-				options->ncurse = 1;
-			}
+				options->ncurse = isatty(STDIN_FILENO) ? 0 : 1;
 			else if (*arg == 'f')
 				options->log = 1;
 			else if (*arg == 'c')
@@ -74,7 +72,8 @@ int 				parse(t_data *d, char *str_number, t_uchar *option)
 	else if (!ret)
 		return (0);
 	long long nbr = spe_atoi(str_number);
-	if (nbr < -2147483648 || nbr > 2147483647 || already_create(d->stack_a, (int)nbr))
+	if (nbr < -2147483648 || nbr > 2147483647 ||
+			already_create(d->stack_a, (int)nbr))
 		return (-1);
 	number.value = (int)nbr;
 	ft_lstadd_end(&d->stack_a, ft_lstnew(&number, sizeof(number)));
