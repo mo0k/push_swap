@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:39 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/26 23:57:04 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/12/03 17:37:20 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int				main(int ac, char **av)
 		clear(&data);
 		exit(EXIT_FAILURE);
 	}
+	//debug
+	//clear(&data);
+	//return (0);
+	//
 	if (!check_result(data.stack_a.list, data.stack_a.argc))
 		(data.stack_a.argc < 8) ? resolve_shortlist(&data) :
 									resolve_longlist(&data);

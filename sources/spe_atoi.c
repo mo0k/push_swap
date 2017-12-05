@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:18:53 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/11/13 23:50:09 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/12/03 17:36:20 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ long				spe_atoi(const char *str)
 	int			n;
 	int			sign;
 
+	if (!str)
+		return (0);
 	n = -1;
 	sign = 1;
 	while (ft_is_charc_special(*(str + (++n))) || ft_isdigit(*(str + n)))
@@ -59,7 +61,7 @@ long				spe_atoi(const char *str)
 		{
 			if (*(str + n) == '-')
 				sign = -1;
-			if ((ft_is_charc_special(*(str + n - 1)) == 2 &&
+			if ((n > 0 && ft_is_charc_special(*(str + n - 1)) == 2 &&
 					ft_is_charc_special(*(str + n)) == 2) ||
 					ft_is_charc_special(*(str + n + 1)) == 1)
 				return (0);

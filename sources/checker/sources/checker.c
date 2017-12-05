@@ -6,21 +6,11 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:10:39 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/27 22:29:28 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/12/05 13:03:12 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <checker.h>
-#include <string.h>
-
-static int exit_error(t_data *data)
-{
-	write(2, "Error\n", 6);
-	clear_data(data);
-	if (data->options.ncurse)
-		endwin();
-	exit(EXIT_FAILURE);
-}
 
 int				check_result(t_list *stack, int nbr_arg)
 {
@@ -46,6 +36,22 @@ int				check_result(t_list *stack, int nbr_arg)
 	return ((i == nbr_arg) ? 1 : 0);
 }
 
+void 			do_instruction(t_data *data, int index)
+{
+	if (!data)
+		return ;
+	data->instruction[index].pfunc(&data->stack_a, &data->stack_b);
+	if (data->options.ncurse)
+		update_visual(&data->display, data->stack_a, data->stack_b);
+	if (data->options.verbose && index < NBR_INSTRUCTIONS - 2)
+		print_stacks(&data->stack_a, &data->stack_b);
+	if (index < NBR_INSTRUCTIONS - 2 && ++data->instruction_executed &&
+			index < NBR_INSTRUCTIONS - 1 && 
+			((!isatty(STDIN_FILENO) && data->options.verbose) ||
+				isatty(STDIN_FILENO)))
+		ft_dprintf(data->fd, "Instrucion N°%d\n", data->instruction_executed);
+}
+
 int 			run_checker(t_data *data, char **readline)
 {
 	int				index;
@@ -55,16 +61,7 @@ int 			run_checker(t_data *data, char **readline)
 		if ((data->options.log || !isatty(STDIN_FILENO)) && data->options.verbose)
 			ft_dprintf(data->fd, "%s\n", *readline);
 		if ((index = find_instruction(data->instruction, *readline)) > -1)
-		{
-			data->instruction[index].pfunc(&data->stack_a, &data->stack_b);
-			if (data->options.ncurse)
-				update_visual(&data->display, data->stack_a, data->stack_b);
-			if (data->options.verbose && index < NBR_INSTRUCTIONS - 2)
-				print_stacks(&data->stack_a, &data->stack_b);
-			if (index < NBR_INSTRUCTIONS - 2 && ++data->instruction_executed &&
-				index < NBR_INSTRUCTIONS - 1 && ((!isatty(STDIN_FILENO) && data->options.verbose) || isatty(STDIN_FILENO)))
-					ft_dprintf(data->fd, "Instrucion N°%d\n", data->instruction_executed);
-		}
+			do_instruction(data, index);
 		else
 			return (exit_error(data));
 		ft_memdel((void*)(readline));
@@ -73,11 +70,11 @@ int 			run_checker(t_data *data, char **readline)
 	{
 		if (data->options.display_result)
 			print_stacks(&data->stack_a, &data->stack_b);
-		write(data->fd, "KO\n", 3);
 		return (0);
 	}
 	return (1);
 }
+
 int				main(int ac, char **av)
 {
 	t_data			data;
@@ -87,21 +84,13 @@ int				main(int ac, char **av)
 		return (0);
 	if (!init(&data, ac, av))
 		return (exit_error(&data));
-	if (data.options.ncurse)
-		init_visual(&data.display, data.stack_a);
+	if (data.options.ncurse && !init_visual(&data.display, data.stack_a))
+		return (exit_error(&data));
 	if (isatty(STDIN_FILENO) || data.options.verbose)
 		print_prog_header(data.options.color, data.fd);
 	if (!run_checker(&data, &readline))
-		return (exit_error(&data));
+		return (exit_prog(&data, EXIT_FAILURE));
 	if (data.options.display_result)
 		print_stacks(&data.stack_a, &data.stack_b);
-	if (data.options.ncurse)
-	{
-		if (!isatty(STDIN_FILENO))
-			sleep(2);
-		endwin();
-	}
-	write(data.fd, "OK\n", 3);
-	clear_data(&data);
-	return (0);
+	return (exit_prog(&data, EXIT_SUCCESS));
 }

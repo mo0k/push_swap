@@ -6,7 +6,7 @@
 #    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 19:25:33 by mo0ky             #+#    #+#              #
-#    Updated: 2017/11/13 22:42:39 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/12/03 14:48:16 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIB = $(LIBPRINT_PATH)/libftprintf.a
 
 all: name
 
-name: 
+name: Makefile
 	@make -C $(LIBPRINT_PATH)
 	@make -C $(CHECKER_PATH)
 	@make -C $(PUSH_SWAP_PATH)

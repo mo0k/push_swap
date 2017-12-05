@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 11:35:17 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/11/24 23:09:34 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/12/03 21:43:14 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,16 @@ static int 		do_parsing(t_options *options, char *arg, t_uchar *flag)
 	}
 }
 
+static void 				disable_options(t_options *options)
+{
+	if (!options)
+		return ;
+	options->log = 0;
+	options->color = 0;
+	options->display_result = 0;
+	options->verbose = 0;
+}
+
 int 				parse(t_data *d, char *str_number, t_uchar *option)
 {
 	int 			ret;
@@ -68,5 +78,7 @@ int 				parse(t_data *d, char *str_number, t_uchar *option)
 		return (-1);
 	number.value = (int)nbr;
 	ft_lstadd_end(&d->stack_a, ft_lstnew(&number, sizeof(number)));
+	if (d->options.ncurse)
+		disable_options(&d->options);
 	return (1);
 }

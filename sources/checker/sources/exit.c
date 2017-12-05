@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/28 11:35:01 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/12/05 12:47:29 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/12/05 12:48:21 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/12/05 13:02:42 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <checker.h>
 
-t_data			*stock_data(t_data *data)
+int 		exit_error(t_data *data)
 {
-	static t_data	*stock;
-
-	if (data)
-		stock = data;
-	else
-		return (stock);
-	return (data);
+	if (data->options.ncurse)
+		endwin();
+	write(2, "Error\n", 6);
+	clear_data(data);
+	while (1){};
+	exit(EXIT_FAILURE);
 }
 
-void			clear_data(t_data *data)
+int 		exit_prog(t_data *data, int exit_status)
 {
-	while (data->stack_a || data->stack_b)
-	{
-		if (data->stack_a)
-			ft_lstdelfirst(&data->stack_a, &del_number);
-		if (data->stack_b)
-			ft_lstdelfirst(&data->stack_b, &del_number);
-	}
-	if (data->fd > 2 && close(data->fd) == -1)
-		ft_dprintf(2, "Error: close file\n");
-}
+	if (!data)
+		return (EXIT_FAILURE);
+	if (data->options.ncurse)
+		endwin();
+	clear_data(data);
+	write((exit_status ? 2 : 1), (exit_status ? "KO\n" : "OK\n"), 3);
+	while (1){};
+	return (exit_status);
+}	
